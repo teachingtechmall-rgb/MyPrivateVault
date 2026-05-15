@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Private Vault - Secure Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- OneSignal SDK Placeholder (Replace YOUR_APP_ID when ready) -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "YOUR_APP_ID_HERE", 
+        });
+      });
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Soft Cloud Blue/Gray */
+        }
+        .blur-img {
+            filter: blur(12px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); transform: scale(1); }
+        }
+        .animate-pulse-green {
+            animation: pulse-green 2s infinite;
+        }
+        .notification-slide {
+            transform: translateY(120%);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .notification-slide.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .verified-badge {
+            background: #1d9bf0;
+            color: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body class="text-slate-900 antialiased">
+
+    <header class="sticky top-0 z-50 glass-morphism border-b border-blue-100/50 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            </svg>
+            <span class="font-bold text-slate-700 text-base tracking-tight">My Private Vault</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full border border-blue-100 uppercase tracking-widest">Secure Node</span>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-5 py-8 pb-32">
+        
+        <div class="text-center mb-8">
+            <div class="relative inline-block mb-4">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" alt="Profile" class="w-28 h-28 rounded-full border-4 border-white shadow-xl mx-auto object-cover">
+                <div class="absolute bottom-1 right-1 verified-badge shadow-md">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg>
+                </div>
+            </div>
+            
+            <h1 class="text-2xl font-extrabold text-slate-900 leading-tight">Ashley's Private Vault</h1>
+            <p class="text-slate-500 mt-1 text-sm font-medium">@ashley_official • Only for Friends 🔒</p>
+
+            <!-- Social Stats -->
+            <div class="flex justify-center items-center gap-6 mt-5 mb-6">
+                <div class="text-center">
+                    <span class="block text-lg font-bold text-slate-800 leading-none">3.1M</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Followers</span>
+                </div>
+                <div class="h-8 w-[1px] bg-slate-200"></div>
+                <div class="text-center">
+                    <span class="block text-lg font-bold text-slate-800 leading-none">428</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Following</span>
+                </div>
+                <div class="h-8 w-[1px] bg-slate-200"></div>
+                <div class="text-center">
+                    <span class="block text-lg font-bold text-slate-800 leading-none">12.5M</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Likes</span>
+                </div>
+            </div>
+
+            <!-- Follow Button (Subscribes to OneSignal) -->
+            <button id="follow-btn" class="w-full bg-[#1d9bf0] hover:bg-[#1a8cd8] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2 mb-8">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+                Follow for Updates
+            </button>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                Recent Private Uploads (4)
+            </h3>
+            <div class="grid grid-cols-2 gap-3 mb-8">
+                <div class="relative aspect-[3/4] bg-slate-300 rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover blur-img" alt="Private">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <div class="bg-white/30 backdrop-blur-md p-3 rounded-full border border-white/40">
+                             <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative aspect-[3/4] bg-slate-300 rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1529139513065-07b2ee0a9012?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover blur-img" alt="Private">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <div class="bg-white/30 backdrop-blur-md p-3 rounded-full border border-white/40">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative aspect-[3/4] bg-slate-300 rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1512413919939-d4000b8d8b9c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover blur-img" alt="Private">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <div class="bg-white/30 backdrop-blur-md p-3 rounded-full border border-white/40">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative aspect-[3/4] bg-slate-300 rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover blur-img" alt="Private">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <div class="bg-white/30 backdrop-blur-md p-3 rounded-full border border-white/40">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12 text-center">
+            <a href="https://example-link.com" id="main-cta" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-black py-5 rounded-2xl text-xl animate-pulse-green shadow-[0_10px_30px_rgba(34,197,94,0.4)] transition-all mb-4 flex items-center justify-center gap-2">
+                🔓 UNLOCK FULL HD ALBUM (18+)
+            </a>
+            <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Verification required for full access</p>
+        </div>
+
+        <section class="mb-12">
+            <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                Trending Now
+            </h3>
+            <div class="space-y-4">
+                <a href="https://yourblog1.com" target="_blank" class="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=150" class="w-16 h-16 rounded-xl object-cover" alt="Travel">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-900 text-sm">Top 10 Hidden Beach Destinations</h4>
+                        <p class="text-[11px] text-blue-500 font-semibold mt-1">Read Full Story &rarr;</p>
+                    </div>
+                </a>
+                <a href="https://yourblog2.com" target="_blank" class="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=150" class="w-16 h-16 rounded-xl object-cover" alt="Health">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-900 text-sm">7-Day Glow Up Challenge 2024</h4>
+                        <p class="text-[11px] text-blue-500 font-semibold mt-1">Visit My Blog &rarr;</p>
+                    </div>
+                </a>
+                <a href="https://yourblog3.com" target="_blank" class="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=150" class="w-16 h-16 rounded-xl object-cover" alt="Fashion">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-900 text-sm">Summer Outfits: Try-On Haul</h4>
+                        <p class="text-[11px] text-blue-500 font-semibold mt-1">Watch Preview &rarr;</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-3 gap-4 text-slate-400 opacity-60 px-2 py-4 border-t border-slate-200">
+            <div class="flex flex-col items-center gap-1.5 text-center">
+                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                <span class="text-[9px] font-black uppercase tracking-widest leading-none">End-to-End Encrypted</span>
+            </div>
+            <div class="flex flex-col items-center gap-1.5 text-center">
+                <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 4.946-2.597 9.181-6.5 11.5a11.954 11.954 0 01-6.5-11.5c0-.682.057-1.35.166-2.001z" clip-rule="evenodd"></path></svg>
+                <span class="text-[9px] font-black uppercase tracking-widest leading-none">100% Secure Node</span>
+            </div>
+            <div class="flex flex-col items-center gap-1.5 text-center">
+                <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H5.5z"></path></svg>
+                <span class="text-[9px] font-black uppercase tracking-widest leading-none">Cloud Backup On</span>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 py-3 px-6 shadow-[0_-5px_15px_rgba(0,0,0,0.05)] flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span class="text-[10px] font-bold tracking-wider text-slate-500 uppercase">Vault Online</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] text-slate-400 font-bold uppercase">Expires In:</span>
+            <span id="timer" class="font-mono font-black text-red-500 bg-red-50 px-2 py-0.5 rounded border border-red-100 min-w-[50px] text-center">04:59</span>
+        </div>
+    </div>
+
+    <div id="notification-box" class="fixed bottom-24 left-4 z-40 max-w-[260px] pointer-events-none">
+        <div id="notification-content" class="notification-slide glass-morphism p-3 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 text-white shadow-inner">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] leading-tight text-slate-700 font-medium"><strong id="notif-name" class="text-blue-600">User_921</strong> from <span id="notif-loc" class="font-bold">California</span> just unlocked the vault.</p>
+                <p class="text-[9px] text-slate-400 mt-0.5 flex items-center gap-1">
+                    <svg class="w-2 h-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                    Just now
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="exit-popup" class="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-6 hidden">
+        <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-blue-500"></div>
+            <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 class="text-2xl font-black text-slate-900 mb-2">Wait! Secure Session Active</h2>
+            <p class="text-slate-500 mb-6 font-medium leading-relaxed italic">"I just uploaded 5 exclusive private reels. You won't see these anywhere else..."</p>
+            <button id="close-popup" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl mb-3 shadow-lg active:scale-95 transition-all">
+                CONTINUE TO VAULT
+            </button>
+            <button id="dismiss-popup" class="text-[10px] text-slate-300 hover:text-slate-500 uppercase tracking-[0.2em] font-black mt-2">I'll pass this time</button>
+        </div>
+    </div>
+
+    <script>
+        
+        // 1. PERSISTENT COUNTDOWN TIMER (Anti-Reset)
+        const initTimer = () => {
+            const timerDisplay = document.getElementById('timer');
+            const key = 'vault_session_expiry';
+            let expiry = localStorage.getItem(key);
+
+            if (!expiry) {
+                expiry = Date.now() + (4 * 60 * 1000) + (59 * 1000); // 4m 59s
+                localStorage.setItem(key, expiry);
+            }
+
+            const update = () => {
+                const now = Date.now();
+                const diff = expiry - now;
+
+                if (diff <= 0) {
+                    timerDisplay.textContent = "00:00";
+                    timerDisplay.classList.remove('text-red-500');
+                    timerDisplay.classList.add('text-slate-400');
+                    return;
+                }
+
+                const m = Math.floor(diff / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                timerDisplay.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            };
+
+            setInterval(update, 1000);
+            update();
+        };
+
+        // 2. SOCIAL PROOF NOTIFICATIONS
+        const initNotifications = () => {
+            const box = document.getElementById('notification-content');
+  
