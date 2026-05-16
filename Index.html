@@ -283,9 +283,85 @@
             update();
         };
 
+        
+
         // 2. SOCIAL PROOF NOTIFICATIONS
         const initNotifications = () => {
             const box = document.getElementById('notification-content');
+            const nameEl = document.getElementById('notif-name');
+            const locEl = document.getElementById('notif-loc');
+
+            const cities = ["New York", "London", "Sydney", "Mumbai", "Dubai", "Berlin", "Toronto", "Paris", "Texas", "Singapore"];
+            const names = ["User_721", "Emily_X", "SecretMember", "Guest_VIP", "Alpha_99", "Sarah_J", "Marco_L", "Verified_88"];
+
+            const trigger = () => {
+                nameEl.textContent = names[Math.floor(Math.random() * names.length)];
+                locEl.textContent = cities[Math.floor(Math.random() * cities.length)];
+
+                box.classList.add('show');
+                setTimeout(() => box.classList.remove('show'), 4500);
+            };
+
+            setInterval(trigger, 15000); // Every 15 seconds
+            setTimeout(trigger, 3000);   // First notification
+        };
+
+        // 3. EXIT INTENT LOGIC
+        const initExitIntent = () => {
+            const popup = document.getElementById('exit-popup');
+            const closeBtn = document.getElementById('close-popup');
+            const dismissBtn = document.getElementById('dismiss-popup');
+            let shown = false;
+
+            // PC: Cursor leaves window
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0 && !shown) {
+                    popup.style.display = 'flex';
+                    shown = true;
+                }
+            });
+
+            // Mobile: 45s timer backup
+            setTimeout(() => {
+                if (!shown) {
+                    popup.style.display = 'flex';
+                    shown = true;
+                }
+            }, 45000);
+
+            closeBtn.onclick = () => popup.style.display = 'none';
+            dismissBtn.onclick = () => popup.style.display = 'none';
+        };
+
+        // 4. ONE SIGNAL & FOLLOW ACTION
+        const initFollowBtn = () => {
+            const btn = document.getElementById('follow-btn');
+            btn.onclick = () => {
+                // OneSignal subscription trigger
+                if (typeof OneSignal !== "undefined") {
+                    OneSignal.push(function() {
+                        OneSignal.showNativePrompt();
+                    });
+                }
+                
+                btn.innerHTML = "Subscribed ✅";
+                btn.classList.replace('bg-[#1d9bf0]', 'bg-slate-200');
+                btn.classList.replace('text-white', 'text-slate-600');
+            };
+        };
+
+        window.onload = () => {
+            initTimer();
+            initNotifications();
+            initExitIntent();
+            initFollowBtn();
+        };
+    </script>
+
+<script src="https://pl27588822.effectivecpmnetwork.com/8f/97/0a/8f970abf857e03beb837fe322d93cdf2.js"></script>
+
+</body>
+</html>
 
 
             
